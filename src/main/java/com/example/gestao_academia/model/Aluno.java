@@ -1,5 +1,6 @@
 package com.example.gestao_academia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -23,13 +24,16 @@ public class Aluno {
     @ManyToOne
     @JoinColumn(name = "plano_id")
     private Plano plano;
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mensalidade> mensalidades;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AvaliacaoFisica> avaliacoesFisicas;
+    private List<AvaliacaoFisica> avaliacoes;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Treino> treinos;
 }

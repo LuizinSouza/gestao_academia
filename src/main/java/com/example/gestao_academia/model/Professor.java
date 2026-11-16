@@ -1,5 +1,6 @@
 package com.example.gestao_academia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Professor {
     private String especialidade;
     private String telefone;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
     private List<Treino> treinos;
 }
