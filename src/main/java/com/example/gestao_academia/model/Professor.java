@@ -2,11 +2,13 @@ package com.example.gestao_academia.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Entity
 @Table(name = "professores")
 @Data
 public class Professor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,4 +17,7 @@ public class Professor {
     private String cpf;
     private String especialidade;
     private String telefone;
+
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Treino> treinos;
 }
